@@ -1,6 +1,7 @@
 import pytest
 from countrycode import countrycode
 
+
 def test_numeric():
     assert countrycode("CAN", "iso3c", "iso3n") == 124
 

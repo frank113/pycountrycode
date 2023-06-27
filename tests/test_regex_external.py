@@ -1,6 +1,7 @@
 import pytest
 from countrycode import countrycode
 
+
 def iso3c_of(name): 
     out = countrycode(sourcevar = name, origin = 'country.name', destination = 'iso3c')
     if out is None:

@@ -1,7 +1,9 @@
 import os
-import pytest
+
 import polars as pl
+import pytest
 from countrycode import *
+
 codelist = pl.read_csv("countrycode/data/codelist.csv")
 
 # Test all country names with iso3c codes are matched exactly once
