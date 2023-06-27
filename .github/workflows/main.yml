@@ -17,7 +17,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Setup python ${{ matrix.python }}
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
       - name: Install Poetry
@@ -25,16 +26,10 @@ jobs:
         with:
           version: 1.5.1
           virtualenvs-create: true
-
-
       - name: Install deps
         run: |
           poetry install --with=dev
-
-      - name: Run tests
+      - name: Run tests on ${{matrix.os }}
         run: |
+          source .venv/bin/activate
           pytest
-
-      - name: Dummy echo
-        run: |
-          echo "in action"
