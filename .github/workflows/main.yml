@@ -9,7 +9,7 @@ on:
 jobs:
   linting-check:
     uses: ./.github/workflows/lint.yml
-  testing:
+  ubuntu-testing:
     needs: linting-check
     strategy:
       fail-fast: true
@@ -18,8 +18,7 @@ jobs:
           - "3.9"
           - "3.10"
           - "3.11"
-        os: ["ubuntu-latest", "windows-latest"]
-    runs-on: ${{ matrix.os }}
+    runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v3
       - name: Setup python ${{ matrix.python }}
@@ -35,5 +34,25 @@ jobs:
         run: |
           poetry install --with=dev
       - name: Run tests on ${{matrix.os }}
+        run: |
+          pytest
+  windows-testing:
+    needs: linting-check
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.5.1
+          virtualenvs-create: false
+      - name: Install deps
+        run: |
+          poetry install --with=dev
+      - name: Windows tests
         run: |
           pytest
