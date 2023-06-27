@@ -4,8 +4,12 @@ __pycache__/
 *.pyd
 __pypackages__/
 *.ipynb
+.pytest_cache/
 
 # Poetry files
 /dist/
 *.egg-info/
 /.venv/
+
+# Development files
+.idea/
