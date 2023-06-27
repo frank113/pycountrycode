@@ -196,9 +196,7 @@ def replace_regex(sourcevar, origin, destination):
     """
     sourcevar_unique = sourcevar.unique()
     codelist_nonull = codelist[[origin, destination]].drop_nulls()
-    o = [
-        re.compile(x, flags=re.IGNORECASE) for x in codelist_nonull[origin]
-    ]
+    o = [re.compile(x, flags=re.IGNORECASE) for x in codelist_nonull[origin]]
     d = codelist_nonull[destination]
     result = []
     for string in sourcevar_unique:
