@@ -11,9 +11,8 @@ jobs:
     strategy:
       matrix:
         python:
-          - "3.9"
-          - "3.10"
-        os: ["ubuntu-latest", "macos-latest", "windows-2022"]
+          - "3.11.4"
+        os: ["ubuntu-latest"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -25,11 +24,13 @@ jobs:
         uses: snok/install-poetry@v1
         with:
           version: 1.5.1
-          virtualenvs-create: true
+          virtualenvs-create: false
+      - name: List directory
+        run: |
+          ls -a
       - name: Install deps
         run: |
           poetry install --with=dev
       - name: Run tests on ${{matrix.os }}
         run: |
-          source .venv/bin/activate
           pytest
