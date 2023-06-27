@@ -125,7 +125,7 @@ def countrycode(
     else:
         raise ValueError(
             f"sourcevar must be a string, list, or polars series. Got {type(sourcevar)}"
-        )  # pylint: disable=line-too-long
+        )
 
     # conversion
     if origin in [
@@ -198,8 +198,8 @@ def replace_regex(sourcevar, origin, destination):
     codelist_nonull = codelist[[origin, destination]].drop_nulls()
     o = [
         re.compile(x, flags=re.IGNORECASE) for x in codelist_nonull[origin]
-    ]  # pylint: disable=invalid-name
-    d = codelist_nonull[destination]  # pylint: disable=invalid-name
+    ]
+    d = codelist_nonull[destination]
     result = []
     for string in sourcevar_unique:
         match_found = False

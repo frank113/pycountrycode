@@ -5,6 +5,11 @@ description = ""
 authors = ["Vincent Arel-Bundock <vincent.arel-bundock@umontreal.ca>"]
 readme = "README.md"
 
+[tool.pylint]
+disable = [
+    "invalid-name"
+]
+
 [tool.poetry.dependencies]
 python = "^3.9"
 polars = "^0.18.3"
