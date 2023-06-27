@@ -7,8 +7,12 @@ on:
     workflow_call:
 
 jobs:
+  linting-check:
+    uses: ./.github/workflows/lint.yml
   testing:
+    needs: linting-check
     strategy:
+      fail-fast: true
       matrix:
         python:
           - "3.9"
