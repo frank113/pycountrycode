@@ -17,6 +17,7 @@ jobs:
         python:
           - "3.9"
           - "3.10"
+          - "3.11"
         os: ["ubuntu-latest", "windows-latest"]
     runs-on: ${{ matrix.os }}
     steps:
@@ -30,9 +31,6 @@ jobs:
         with:
           version: 1.5.1
           virtualenvs-create: false
-      - name: List directory
-        run: |
-          ls -a
       - name: Install deps
         run: |
           poetry install --with=dev
