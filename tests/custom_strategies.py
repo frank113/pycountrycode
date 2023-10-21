@@ -36,7 +36,6 @@ def build_valid_code(code: str = "iso3c") -> SearchStrategy[str]:
     )
 
 
-@depre
 def select_filtered_row(input_column: str, column_value: str, target_col="country.name.en") -> Union[
     Optional[int], Optional[str]]:
     """
