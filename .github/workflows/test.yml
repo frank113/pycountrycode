@@ -38,7 +38,7 @@ jobs:
 
       - name: Install polars
         run: |
-            poetry install polars
+            poetry install --all-extras
 
       - name: Run pytest with polars
         run: |
