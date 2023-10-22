@@ -6,7 +6,6 @@ from typing import Optional, Union
 from hypothesis import strategies as st
 from hypothesis.strategies import SearchStrategy
 
-
 pkg_dir, pkg_filename = os.path.split(__file__)
 pkg_dir = os.path.dirname(pkg_dir)
 data_path = os.path.join(pkg_dir, "countrycode", "data", "codelist.csv")
@@ -58,3 +57,20 @@ def build_invalid_code(code="iso3c") -> SearchStrategy[str]:
     Returns a string that is not represented in code within codelist
     """
     return st.text(alphabet=string.printable, min_size=1, max_size=10).filter(lambda z: z not in _select_codes(code))
+
+
+def empty_string_to_null(s: str) -> Optional[str]:
+    """
+    Helper function to convert empty strings to `None`. Diract extraction from
+    the `codelist` dictionary stores empty values as `""` while
+    `countrycode` represents those values as None
+    Args:
+        s: A string
+
+    Returns: `None` is the string is empty, otherwise the function will return
+        the input string `s`.
+
+    """
+    if s == "":
+        return None
+    return s
