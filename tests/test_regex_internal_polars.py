@@ -1,12 +1,18 @@
+import os
 import pytest
 from countrycode import countrycode
-from custom_strategies import codelist
 
 try:
     import polars as pl
     _has_polars = True
+
+    pkg_dir, pkg_filename = os.path.split(__file__)
+    pkg_dir = os.path.dirname(pkg_dir)
+    data_path = os.path.join(pkg_dir, "countrycode", "data", "codelist.csv")
+    codelist = pl.read_csv(data_path)
 except ImportError:
     _has_polars = False
+    from custom_strategies import codelist
 
 _regex_internal_skip_reason = "Test requires polars installation"
 
